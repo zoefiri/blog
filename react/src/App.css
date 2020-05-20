@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css?family=Space+Mono');
+
+* {
+   color: #f7f3df;
+}
+
+/* title */
+   /* container for left panel */
+   #wrapper {
+      display: flex;
+      flex-direction: row;
+      margin: 20px;
+   }
+      /* extra div thing going before sidebar, idk it fixes something. */
+      #pseudoSidebar {
+         position: static;
+         height: 100vh;
+         width: 380px;
+      }
+      /* left page grid thing with title, navbar, and animation box */
+      #sidebar {
+         top: 20px;
+         left: 20px;
+         display: grid;
+         position: fixed;
+         grid-template-columns: 100px 250px;
+         grid-template-rows: 100px auto;
+         grid-column-gap: 15px;
+         grid-row-gap: 15px;
+         height: 97vh;
+         width: 350px;
+      }
+         /* title with name and profile picture */
+         #title {
+            padding: 3px;
+            color: #ffb536;
+            position: static;
+            grid-area: 1 / 1 / 2 / 3;
+            border: 10px solid #191719;
+            font-size: 300%;
+            font-family: "Space Mono";
+         }
+            /* profile picture in title */
+            #pfp {
+               position: relative;
+               top: -105%;
+               right: -240px;
+               height: 80%;
+               background: #191719;
+               border: 5px solid #191719;
+               border-radius: 50%;
+            }
+         /* navbar with about-me, github, and search buttons */
+         #nav {
+            position: static;
+            grid-area: 2 / 1 / 3 / 2;
+            border: 10px solid #191719;
+         }
+            /* container in navbar to hold buttons at center */
+            #navcontainer {
+               position: relative;
+               top: 34%;
+               left: 5%;
+               width: 45px;
+            }
+               /* filters to run on icons in navbar */
+               .navimg {
+                  filter: invert(35%) sepia(22%) saturate(767%) hue-rotate(135deg) brightness(99%) contrast(90%);
+               }
+               /* set positions of search indicaator and about me icon */
+               #nav-profile {
+                  position: fixed;
+                  width: 5.5vh;
+                  filter: grayscale(100%) brightness(62%) contrast(500%) invert(35%) sepia(22%) saturate(147%) hue-rotate(135deg) brightness(104%) contrast(225%);
+               }
+         /* box with animation display inside of it */
+         #animbox {
+            position: static;
+            grid-area: 2 / 2 / 3 / 3;
+            border: 10px solid #191719;
+            overflow:hidden;
+         }
+            #shadervid {
+               width: wh;
+            }
+         /* search menu for posts */
+         #postmenu {
+            position: fixed;
+            border: 10px solid #191719;
+            background: #202024;
+            z-index: 10;
+            height: 97vh;
+            width: 345px;
+            top: 20px;
+            left: 20px;
+            transition: transform .7s cubic-bezier(0, .52, 0, 1);
+         }
+            /* search menu show & hide rules for React */
+            #postmenu.hidden {
+               transform: translate3d(-100vw, 0, 0);
+            }
+
+            #postmenu.shown {
+               transform: translate3d(0vw, 0, 0);
+            }
+            /* search menu exit button */
+            #postExit {
+               position: absolute;
+               top: 0px;
+               right: 10px;
+            }
+            /* search box for search menu */
+            #searchBox {
+               margin: 10px;
+               padding: 10px;
+               border: 10px solid #191719;
+               height: 3vh;
+               display: flex;
+               flex-direction: row;
+            }
+               /* search box text box */
+               #searchBoxText {
+                  border: 0px;
+                  background: #202024;
+                  width: 240px;
+                  flex-grow: 1;
+                  order: 1;
+                  position: static;
+                  height: 100%;
+               }
+               /* search box icon */
+               #search-indicator {
+                  height: 1vh;
+                  width: 2vw;
+                  height: 4vw;
+                  top: -10px;
+                  filter: invert(35%) sepia(22%) saturate(767%) hue-rotate(135deg) brightness(99%) contrast(90%);
+                  position: relative;
+                  order: 2;
+               }
+            /* rules for post search results */
+            .postResult {
+               border: 10px solid #191719;
+               color: #ffb536;
+               background: #202024;
+               margin: 10px;
+            }
+               /* titlebar of search result */
+               .postResultTitle {
+                  border-bottom: 10px solid #191719;
+                  color: #5af78e;
+                  font-size: vh;
+                  font-family: "Space Mono";
+               }
+               /* content of search result */
+               .postResultPrev {
+                  color: #ffb536;
+               }
+
+/* box with current post inside of it, right of page */
+#post {
+   border: 10px solid #191719;
+   height: fit-content;
+   max-width: 1000px;
+   width: calc(100% - 470px);
+   position: absolute;
+   right: 20px;
+}
+   /* titlebar of the current post box */
+   #postTitle {
+      border-bottom: 10px solid #191719;
+      height: 6vh;
+      font-size: 4vh;
+      font-family: "Space Mono";
+      display: flex;
+      flex-direction: row;
+   }
+      #postTitleName {
+         color: #ff5c57;
+      }
+      #postTitleDate {
+         color: #396a6d;
+         padding-right: 10px;
+         margin-left:auto;
+         margin-right:0;
+         font-size: 2vh;
+      }
+   /* body of current post */
+   #postContent {
+      white-space: pre-wrap;
+      padding: 4px;
+   }
+
+/* background */
+#bkg {
+   width: 100%;
+   height: 100%;
+   top: 0px;
+   z-index: -1;
+   position: fixed;
+   background: #191719;
+   background-image: url("/background.jpeg");
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-position: center; 
+}
+
+/* set all "panel" div's backgrounds */
+.panel {
+   background: #202024;
+}
+
+/* global image rules */
+img {
+   max-width: 95%;
+   max-height: 100%;
+   display: block; /* remove extra space below image */
+   margin: 10px;
+}
