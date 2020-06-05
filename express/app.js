@@ -19,13 +19,15 @@ function getPosts(){
          let splitpost;
          if(!err){
             files.forEach((file, i) => {
-               contents = fs.readFileSync('./posts/'+file)
-               splitpost = file.split("$");
-               posts[splitpost[1]] = {};
-               posts[splitpost[1]]["date"] = splitpost[0];
-               posts[splitpost[1]]["title"] = splitpost[1];
-               posts[splitpost[1]]["content"] = contents.toString();
-               console.log(contents)
+               if(file[0] != '.'){
+                  contents = fs.readFileSync('./posts/'+file)
+                  splitpost = file.split("$");
+                  posts[splitpost[1]] = {};
+                  posts[splitpost[1]]["date"] = splitpost[0];
+                  posts[splitpost[1]]["title"] = splitpost[1];
+                  posts[splitpost[1]]["content"] = contents.toString();
+                  console.log(contents)
+               }
             });
             resolve(posts);
          }
